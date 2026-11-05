@@ -1,0 +1,21 @@
+@if (product()) {
+  <div class="details-card">
+    <h2>{{ product()?.title || product()?.name }}</h2>
+    <p class="price-text">Ціна: {{ product()?.price }} $</p>
+    <p><strong>Категорія:</strong> {{ product()?.category }}</p>
+
+    @if (product()?.description) {
+      <p class="description">{{ product()?.description }}</p>
+    }
+
+    <br />
+    <a routerLink="/products" class="back-link">← Назад до списку</a>
+  </div>
+} @else if (errorMessage()) {
+  <div class="error-card">
+    <p><strong>{{ errorMessage() }}</strong></p>
+  </div>
+  <a routerLink="/products" class="back-link">← Назад до списку</a>
+} @else {
+  <p>Завантаження інформації про товар...</p>
+}

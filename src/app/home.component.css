@@ -1,0 +1,39 @@
+.home-card {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  border: 1px solid #e9ecef;
+  text-align: center;
+}
+
+.home-card h2 {
+  color: #2c3e50;
+  margin-bottom: 12px;
+}
+
+.home-card p {
+  color: #64748b;
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+}
+
+.btn {
+  display: inline-block;
+  background-color: #3498db;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+
+.btn:hover {
+  background-color: #2980b9;
+}

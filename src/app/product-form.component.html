@@ -1,0 +1,19 @@
+<h3>Додати новий товар</h3>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div>
+    <input formControlName="name" placeholder="Назва товара" />
+  </div>
+  <div>
+    <input formControlName="price" type="number" placeholder="Ціна" />
+  </div>
+  <div>
+    <select formControlName="category">
+      <option value="" disabled selected>Оберіть категорію</option>
+      <option value="electronics">electronics</option>
+      <option value="jewelery">jewelery</option>
+      <option value="men's clothing">men's clothing</option>
+      <option value="women's clothing">women's clothing</option>
+    </select>
+  </div>
+  <button type="submit" [disabled]="form.invalid">Зберегти</button>
+</form>

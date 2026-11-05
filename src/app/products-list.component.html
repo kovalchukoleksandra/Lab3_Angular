@@ -1,0 +1,22 @@
+<h2>Список товарів</h2>
+
+<app-product-form (productAdded)="onProductAdded($event)"></app-product-form>
+
+<div class="filter-container">
+  <label>Фільтр за категорією: </label>
+  <select [ngModel]="selectedCategory()" (ngModelChange)="selectedCategory.set($event)">
+    <option value="">Усі категорії</option>
+    @for (c of categories; track c) {
+      <option [value]="c">{{ c }}</option>
+    }
+  </select>
+</div>
+
+<ul class="products-grid">
+  @for (p of filteredProducts(); track p.id) {
+    <li>
+      <a [routerLink]="['/products', p.id]">{{ p.title || p.name }}</a>
+      <div class="price">{{ p.price }} $</div>
+    </li>
+  }
+</ul>
