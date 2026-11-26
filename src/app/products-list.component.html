@@ -17,6 +17,41 @@
     <li>
       <a [routerLink]="['/products', p.id]">{{ p.title || p.name }}</a>
       <div class="price">{{ p.price }} $</div>
+      <div class="card-actions">
+  <button type="button" class="btn-edit" (click)="onEdit(p, $event)">Редагувати</button>
+  <button type="button" class="btn-delete" (click)="onDelete(p, $event)">Видалити</button>
+</div>
     </li>
   }
 </ul>
+@if (editingProduct()) {
+  <div class="modal-backdrop" (click)="closeModal()">
+    <div class="modal-window" (click)="$event.stopPropagation()">
+      <h3>Редагувати товар</h3>
+
+      <div class="modal-field">
+        <label>Назва товару:</label>
+        <input [(ngModel)]="editName" placeholder="Назва товару" />
+      </div>
+
+      <div class="modal-field">
+        <label>Ціна ($):</label>
+        <input [(ngModel)]="editPrice" type="number" min="1" />
+      </div>
+
+      <div class="modal-field">
+        <label>Категорія:</label>
+        <select [(ngModel)]="editCategory">
+          @for (c of categories; track c) {
+            <option [value]="c">{{ c }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" class="btn-cancel" (click)="closeModal()">Скасувати</button>
+        <button type="button" class="btn-save" (click)="saveEdit()">Зберегти зміни</button>
+      </div>
+    </div>
+  </div>
+}

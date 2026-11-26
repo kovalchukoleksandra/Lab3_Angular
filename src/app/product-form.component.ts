@@ -23,19 +23,16 @@ export class ProductFormComponent {
 
   onSubmit() {
     if (this.form.valid) {
-      this.service.create(this.form.value as any).subscribe(() => {
-        alert('Товар успішно додано!');
-        const createdProduct: Product = {
-          id: Date.now(),
-          title: this.form.value.name,
-          price: Number(this.form.value.price),
-          category: this.form.value.category,
-          description: 'Це локально доданий товар.'
-        };
-        
-        this.service.addLocalProduct(createdProduct);
-        this.productAdded.emit(createdProduct);
-        this.form.reset({ price: 1 });
+      this.service.create(this.form.value as any).subscribe({
+        next: (createdProduct) => {
+          alert('Товар успішно додано!');
+          this.productAdded.emit(createdProduct);
+          this.form.reset({ price: 1 });
+        },
+        error: (err) => {
+          console.error(err);
+          alert('Помилка при додаванні товару');
+        }
       });
     }
   }
